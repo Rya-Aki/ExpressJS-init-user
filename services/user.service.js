@@ -97,13 +97,12 @@ exports.updateLogin = async (id, change) => {
             error: "Le nom d'utilisateur doit faire au moins 2 caractères !",
         }
     }
-    await User.findOneAndUpdate({_id: id}, {login: change.login});
+    await User.findOneAndUpdate({_id: id}, {login: change.login, updateAt: new Date()});
     return {
         success: true,
         message: "Votre Login a bien été modifier",
         login: change.login
     };
-
 }
 
 exports.updateMail = async (id, change) => {
@@ -121,7 +120,7 @@ exports.updateMail = async (id, change) => {
             error: "Email invalide !"
         }
     }
-    await User.findOneAndUpdate({_id: id}, {email: change.email});
+    await User.findOneAndUpdate({_id: id}, {email: change.email, updateAt: new Date()});
     return {
         success: true,
         message: "Votre email a bien été modifier",
@@ -144,9 +143,32 @@ exports.updateUserPass = async (id, change) => {
         };
     }
     change.confPassword = await bcrypt.hash(change.confPassword, 10);
-    await User.findOneAndUpdate({_id: id}, {password: change.confPassword});
+    await User.findOneAndUpdate({_id: id}, {password: change.confPassword, updateAt: new Date()});
     return {
         success: true,
         message: "Le mot de passe a bien été changer"
+    };
+}
+
+exports.getMe = async (id) => {
+    let user = await User.findOne({_id: id})
+    return {
+        success: true,
+        user: user
+    }
+}
+
+exports.deleteUserById = async (id) => {
+    await User.deleteOne({_id: id})
+    return {
+        success: true
+    }
+}
+
+exports.updateRole = async (id, role) => {
+    await User.updateOne({_id: id}, {admin: role.admin, updateAt: new Date()});
+    return {
+        success: true,
+        message: "Le role a été modifié"
     };
 }
