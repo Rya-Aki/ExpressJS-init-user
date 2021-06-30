@@ -73,3 +73,80 @@ exports.unsetUser = async (id) => {
         success: true
     };
 }
+
+exports.allUser = async () => {
+    let users = await User.find({})
+    return {
+        success: true,
+        users: users
+    }
+}
+
+exports.updateLogin = async (id, change) => {
+    const user = await User.findOne({_id: id})
+    if (user.login === change.login) {
+        return {
+            success: true,
+            message: "Aucun changement n'a été effectuer",
+            login: change.login
+        }
+    }
+    if (change.login.length < 2) {
+        return {
+            success: false,
+            error: "Le nom d'utilisateur doit faire au moins 2 caractères !",
+        }
+    }
+    await User.findOneAndUpdate({_id: id}, {login: change.login});
+    return {
+        success: true,
+        message: "Votre Login a bien été modifier",
+        login: change.login
+    };
+
+}
+
+exports.updateMail = async (id, change) => {
+    const user = await User.findOne({_id: id})
+    if (user.email === change.email) {
+        return {
+            success: true,
+            message: "Aucun changement n'a été effectuer",
+            email: change.email
+        }
+    }
+    if (!validateEmail(change.email)) {
+        return {
+            success: false,
+            error: "Email invalide !"
+        }
+    }
+    await User.findOneAndUpdate({_id: id}, {email: change.email});
+    return {
+        success: true,
+        message: "Votre email a bien été modifier",
+        email: change.email
+    };
+}
+exports.updateUserPass = async (id, change) => {
+    if (change.newPassword !== change.confPassword) {
+        return {
+            success: false,
+            error: "les nouveaux mots de passes ne sont pas identique",
+        }
+    }
+    let user = await User.findOne({_id: id})
+    let valid = await bcrypt.compare(change.password, user.password)
+    if (!valid) {
+        return {
+            success: false,
+            error: "L'ancien mot de pass ne correspond pas !",
+        };
+    }
+    change.confPassword = await bcrypt.hash(change.confPassword, 10);
+    await User.findOneAndUpdate({_id: id}, {password: change.confPassword});
+    return {
+        success: true,
+        message: "Le mot de passe a bien été changer"
+    };
+}

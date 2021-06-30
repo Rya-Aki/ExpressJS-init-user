@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const SECRET = "mykey";
+const SECRET = "RyaSuiteSecretKey1298456";
 const User = require('../models/userModel');
 
 
