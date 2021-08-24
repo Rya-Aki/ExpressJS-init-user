@@ -1,0 +1,39 @@
+{
+  "name": "bod-health-back",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node bin/www",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ryazza/Bod-Health-Back.git"
+  },
+  "author": "Thierry Drouin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ryazza/Bod-Health-Back/issues"
+  },
+  "homepage": "https://github.com/Ryazza/Bod-Health-Back#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "core-util-is": "^1.0.2",
+    "cors": "^2.8.5",
+    "debug": "^4.3.1",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-jwt": "^6.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongodb": "^3.6.9",
+    "mongoose": "^5.12.14",
+    "mongoose-unique-validator": "^2.0.3",
+    "morgan": "^1.10.0",
+    "nodemailer": "^6.6.3",
+    "swagger-autogen": "^2.11.2",
+    "swagger-ui-express": "^4.1.6"
+  }
+}
