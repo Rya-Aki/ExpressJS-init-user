@@ -21,6 +21,7 @@ Initialisation d'un projet ExpressJS/MongoDB comprenant une gestion basique d'ut
 
 ### Documentation
 
+- ```server.js > routes > controllers > services > models```
 - ```http://localhost:4200/api```
 
 ![Documentation Image](assets/swaggerView.png)
