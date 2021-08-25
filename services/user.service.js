@@ -122,19 +122,22 @@ exports.updatePassword = async (id, body) => {
 exports.deleteAccount = async (id) => {
     try {
         await User.deleteOne({_id: id});
-        return {
-            success: true
-        };
+        return {success: true};
     } catch (error) {
         throw error
     }
 }
 exports.me = async (id) => {
     try {
-        return {
-            success: true,
-            user: await User.findOne({_id: id})
-        }
+        return {success: true, user: await User.findOne({_id: id})}
+    } catch (error) {
+        throw error
+    }
+}
+
+exports.allUsers = async () => {
+    try {
+        return {success: true, user: await User.find({})}
     } catch (error) {
         throw error
     }

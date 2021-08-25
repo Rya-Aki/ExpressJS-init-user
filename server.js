@@ -6,8 +6,10 @@ const cors = require('cors');
 let logger = require('morgan');
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json');
+
 // Import des routes
 let UserRoutes = require('./routes/user.route')
+let AdminRoutes = require('./routes/admin.route')
 // -----
 
 let app = express();
@@ -21,6 +23,7 @@ app.use(cors());
 // Routes
 app.use('/api', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use('/user', UserRoutes)
+app.use('/admin', AdminRoutes)
 // -----
 
 // DB
