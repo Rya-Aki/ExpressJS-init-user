@@ -2,7 +2,7 @@ const User = require('../models/userModel');
 const nodemailer = require('nodemailer')
 const jwt = require('jsonwebtoken')
 const transporter = nodemailer.createTransport({
-    service: 'gmail',
+    service: process.env.EMAIL_SERVICE,
     auth: {
         user: process.env.EMAIL,
         pass: process.env.PASSWORD
@@ -35,7 +35,7 @@ exports.sendMailVerification = async (email, login) => {
         email: email,
     }, process.env.SECRET, {expiresIn: '72 hours'})
     const mailOptions = {
-        from: "Bod'Health",
+        from: process.env.FROM,
         to: email,
         subject: 'Email de validation',
         html: "<h3>Bonjour " + login + ",</h3><br>" +
