@@ -4,7 +4,8 @@
   "description": "Initialisation d'un projet ExpressJS/MongoDB comprenant une gestion basique d'utilisateur",
   "main": "index.js",
   "scripts": {
-    "start": "node bin/www",
+    "start": "node swagger.js && node bin/www",
+    "dev": "node swagger.js && nodemon bin/www",
     "test": "jest"
   },
   "repository": {
@@ -33,6 +34,7 @@
     "mongoose-unique-validator": "^2.0.3",
     "morgan": "^1.10.0",
     "nodemailer": "^6.6.3",
+    "nodemon": "^2.0.12",
     "swagger-autogen": "^2.11.2",
     "swagger-ui-express": "^4.1.6"
   },
