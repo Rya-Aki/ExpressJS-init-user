@@ -21,7 +21,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
 // Routes
-app.use('/api', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+if(process.argv[2] === "dev") {
+    app.use('/api', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+}
 app.use('/user', UserRoutes)
 app.use('/admin', AdminRoutes)
 // -----

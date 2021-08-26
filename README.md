@@ -10,8 +10,8 @@ Initialisation d'un projet ExpressJS/MongoDB comprenant une gestion basique d'ut
 
 - ```npm install```
 - ```npm init``` ( ***facultatif*** - permet de changer le nom du projet)
-- ```npm run start``` (***démarre le projet de facon standard***)
-- ```npm run dev``` (***démarre le projet en mode dev avec nodemon***)
+- ```npm run start``` (***démarre le projet de facon standard (prod)***)
+- ```npm run dev``` (***démarre le projet en mode dev avec nodemon et swagger (dev)***)
 
 ### Fonctionalité
 

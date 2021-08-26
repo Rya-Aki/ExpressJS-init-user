@@ -4,8 +4,8 @@
   "description": "Initialisation d'un projet ExpressJS/MongoDB comprenant une gestion basique d'utilisateur",
   "main": "index.js",
   "scripts": {
-    "start": "node swagger.js && node bin/www",
-    "dev": "node swagger.js && nodemon bin/www",
+    "start": "node bin/www prod",
+    "dev": "node swagger.js && nodemon bin/www dev",
     "test": "jest"
   },
   "repository": {
