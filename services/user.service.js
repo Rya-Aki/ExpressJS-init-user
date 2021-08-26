@@ -8,11 +8,13 @@ exports.register = async (body, admin = false) => {
     try {
         switch (false) {
             case await validation.emailValidation(body.email) :
-                return {success: false, error: "invalid email"}
+                return {success: false, error: "Invalid email format"}
             case await validation.loginValidation(body.login) :
-                return {success: false, error: "invalid login"}
+                return {success: false, error: "Invalid login length: min=2, max=255"}
+            case await validation.loginFormatValidation(body.login) :
+                return {success: false, error: "Invalid login format"}
             case await validation.passwordValidation(body.password, body.confirmation) :
-                return {success: false, error: "invalid password"}
+                return {success: false, error: "Invalid password format"}
             case await validation.emailUnique(body.email) :
                 return {success: false, error: "no unique email"}
             case await validation.loginUnique(body.login) :
@@ -92,7 +94,9 @@ exports.updateLogin = async (id, body) => {
     try {
         switch (false) {
             case await validation.loginValidation(body.login) :
-                return {success: false, error: "invalid login"}
+                return {success: false, error: "Invalid login length: min=2, max=255"}
+            case await validation.loginFormatValidation(body.login) :
+                return {success: false, error: "Invalid login format"}
             case await validation.loginUnique(body.login) :
                 return {success: false, error: "no unique login"}
             default :
@@ -108,7 +112,7 @@ exports.updatePassword = async (id, body) => {
         let user = await User.findOne({_id: id})
         switch (false) {
             case await validation.passwordValidation(body.new, body.confirmation) :
-                return {success: false, error: "invalid password"};
+                return {success: false, error: "invalid password format"};
             case await bcrypt.compare(body.password, user.password) :
                 return {success: false, error: "incorrect log"}
             default :

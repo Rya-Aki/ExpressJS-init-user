@@ -15,7 +15,11 @@ exports.emailValidation = async (email) => {
     return re.test(String(email).toLowerCase());
 }
 exports.loginValidation = async (login) => {
-    return login.length > 2 && login.length < 255;
+    return login.length > 2 && login.length < 255
+}
+exports.loginFormatValidation = async (login) => {
+    const re = /^[a-zA-Z0-9äöüÄÖÜ]*$/
+    return re.test(String(login).toLowerCase());
 }
 exports.passwordValidation = async (password, confirmation) => {
     if (password === confirmation) {
