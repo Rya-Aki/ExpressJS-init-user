@@ -1,7 +1,7 @@
 {
-  "name": "bod-health-back",
-  "version": "1.0.0",
-  "description": "",
+  "name": "express-js-user",
+  "version": "2.0.0",
+  "description": "Initialisation d'un projet ExpressJS/MongoDB comprenant une gestion basique d'utilisateur",
   "main": "index.js",
   "scripts": {
     "start": "node bin/www",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Ryazza/Bod-Health-Back.git"
+    "url": "git+https://github.com/Ryazza/ExpressJS-init-user.git"
   },
   "author": "Thierry Drouin",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Ryazza/Bod-Health-Back/issues"
+    "url": "https://github.com/Ryazza/ExpressJS-init-user/issues"
   },
-  "homepage": "https://github.com/Ryazza/Bod-Health-Back#readme",
+  "homepage": "https://github.com/Ryazza/ExpressJS-init-user#readme",
   "dependencies": {
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
@@ -35,5 +35,6 @@
     "nodemailer": "^6.6.3",
     "swagger-autogen": "^2.11.2",
     "swagger-ui-express": "^4.1.6"
-  }
+  },
+  "devDependencies": {}
 }
