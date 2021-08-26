@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt')
 const validation = require('../validation/validation')
 const jwt = require("jsonwebtoken");
 
-exports.register = async (body) => {
+exports.register = async (body, admin = false) => {
     try {
         switch (false) {
             case await validation.emailValidation(body.email) :
@@ -21,7 +21,7 @@ exports.register = async (body) => {
                 let user = new User({
                     createdAt: new Date(),
                     updateAt: new Date(),
-                    admin: false,
+                    admin: admin,
                     email: body.email,
                     login: body.login,
                     password: await bcrypt.hash(body.password, 10),
@@ -119,6 +119,18 @@ exports.updatePassword = async (id, body) => {
         throw error
     }
 }
+exports.updateRole = async (id, body) => {
+    try {
+        if( body.admin === true || body.admin === false ) {
+            await User.updateOne({_id: id}, {admin: body.admin})
+            return {success: true}
+        } else {
+            return {success: false, error: "admin must be a boolean: true or false"}
+        }
+    } catch (error) {
+        throw error
+    }
+}
 exports.deleteAccount = async (id) => {
     try {
         await User.deleteOne({_id: id});
@@ -134,11 +146,21 @@ exports.me = async (id) => {
         throw error
     }
 }
-
 exports.allUsers = async () => {
     try {
         return {success: true, user: await User.find({})}
     } catch (error) {
+        throw error
+    }
+}
+exports.searchUserByLoginOrEmail = async (search) => {
+    try {
+        let result = {email: [], login: []};
+        result.email = await User.find({email: new RegExp(search, 'gi')})
+        result.login = await User.find({login: new RegExp(search, 'gi')})
+        return {success: true, result}
+    } catch (error) {
+        console.log(error)
         throw error
     }
 }
