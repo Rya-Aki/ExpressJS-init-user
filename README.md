@@ -17,7 +17,15 @@ Initialisation d'un projet ExpressJS/MongoDB comprenant une gestion basique d'ut
 - ```Gestion de compte utilisateur basic (CRUD)```
 - ```Vérification d'email (email de confirmation)```
 - ```Swagger automatiser au lancement du serveur```
-- ```Gestion administrateur des utilisateur (work in progress)```
+  
+ MaJ du 26/08 :
+```
+  Gestion administrateur des utilisateur
+    - Création de compte administrateur
+    - Récupération de tout les utilisateur ou par ID ou recherché par nom/email
+    - Modifier le login/mail ou role d'un utilisateur
+    - Supprimer le compte d'un utilisateur
+```
 
 ### Documentation
 
